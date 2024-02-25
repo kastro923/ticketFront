@@ -24,6 +24,7 @@
     "@sweetalert2/ngx-sweetalert2": "^12.2.0",
     "angular-datatables": "^16.0.1",
     "bootstrap": "^5.2.3",
+    "chart.js": "^4.4.1",
     "datatables.net": "^1.11.3",
     "datatables.net-bs4": "^1.11.3",
     "datatables.net-dt": "^1.11.3",
@@ -31,7 +32,7 @@
     "jquery": "^3.6.0",
     "ngx-socket-io": "^4.6.1",
     "rxjs": "~7.5.0",
-    "sweetalert2": "^11.10.0",
+    "sweetalert2": "^11.6.13",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.3"
   },
