@@ -22,7 +22,7 @@ export class UserComponent implements OnInit {
 
   message: string;
 
-  userImage: string;
+  selectedId : number;
   editPopup: boolean;
   formSubmissionFlag: boolean = false;
 
@@ -132,13 +132,14 @@ export class UserComponent implements OnInit {
         text: 'There is an error from backend side.\n' + err,
         icon: 'error',
         confirmButtonText: 'Close'
-      })
+      }).then(() => this.getUserList())
     })
   }
 
   read(i: any) {
     this.userForm.patchValue(i);
     this.editPopup = true;
+    this.selectedId = i.id;
     // setTimeout(() => {
     //   this.popUpShowHideFlag = !this.popUpShowHideFlag;
     // }, 500);
@@ -161,7 +162,7 @@ export class UserComponent implements OnInit {
     this.closeModal.nativeElement.click();
     this.formSubmissionFlag = false;
 
-     this.usersService.editUser(formData)?.subscribe({
+     this.usersService.editUser(formData,this.selectedId)?.subscribe({
        next:(res:any) =>{
       if (res) {
         this.formSubmissionFlag = false;
@@ -172,7 +173,7 @@ export class UserComponent implements OnInit {
           icon: 'success',
           confirmButtonText: 'Close'
         }).then(() => this.getUserList())
-        
+
       }
     } ,error:(error: string) =>
       Swal.fire({
@@ -218,7 +219,7 @@ export class UserComponent implements OnInit {
     this.errors = [];
     this.formError = {};
     let validFlag = true;
-   
+
     if (!this.userForm.value.email) {
       this.errors.push('email');
       this.formError.errorForEmail = 'Email is required';

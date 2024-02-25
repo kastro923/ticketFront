@@ -21,7 +21,11 @@ export class TicketService {
     return this.http.requestCall(API_ENDPOINTS.deleteTicket+id,ApiMethod.DELETE);
   }
 
-  editUser(formData: any,id:number) {
+  editTicket(formData: any,id:number) {
     return this.http.requestCall(API_ENDPOINTS.editTicket+id,ApiMethod.PUT,"",formData);
+  }
+
+  treatTicket(formData:any,id:number){
+    return this.http.requestCall(API_ENDPOINTS.treatTicket+id,ApiMethod.PUT,'',formData)
   }
 }

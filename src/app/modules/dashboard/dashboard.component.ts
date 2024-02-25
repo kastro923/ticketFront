@@ -9,26 +9,26 @@ import Chart from 'chart.js/auto';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  allTickets: any[]; 
-  ticketsEncours: any[]; 
-  nombreUtilisateurs: number = 0; 
-  nombreTechniciens: number = 0; 
+  allTickets: any[];
+  ticketsEncours: any[];
+  nombreUtilisateurs: number = 0;
+  nombreTechniciens: number = 0;
   latestTickets: any[];
 
   constructor(
     private ticketService: TicketService,
-    private userService: UsersService 
+    private userService: UsersService
   ) {
     this.allTickets = [];
     this.latestTickets = [];
   }
-  
+
 
   ngOnInit(): void {
     this.getTickets();
-    this.getUsers(); 
+    this.getUsers();
   }
-  
+
   createChart(): void {
     const ctx = document.getElementById('myChart') as HTMLCanvasElement;
     const myChart = new Chart(ctx, {
@@ -90,7 +90,7 @@ export class DashboardComponent implements OnInit {
       next: (data: any[]) => {
         const users = data;
         this.nombreUtilisateurs = users.length;
-        this.nombreTechniciens = users.filter(user => user.roles.some(role => role.name === 'ROLE_MODERATOR')).length;
+        this.nombreTechniciens = users.filter(user => user.role  === 'TECHNICIEN').length;
       },
       error: (error: any) => console.log(error)
     });
